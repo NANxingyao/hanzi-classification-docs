@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 st.title("📝 动词属性判断系统")
-st.markdown("### 请对每个词语作为动词时，判断是否符合规则")
+st.markdown("### 请判断每个词语是否符合动词规则")
 st.divider()
 
 # --------------------------
