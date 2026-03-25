@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from io import BytesIO
 
 # --------------------------
 # 页面配置
@@ -89,21 +88,13 @@ st.markdown("## 📊 全部词语得分总表")
 st.dataframe(df, use_container_width=True)
 
 # --------------------------
-# 导出 Excel 文件
+# 导出 CSV 文件（兼容 Excel，无依赖）
 # --------------------------
-def to_excel(df):
-    output = BytesIO()
-    with pd.ExcelWriter(output, engine='openpyxl') as writer:
-        df.to_excel(writer, index=False)
-    return output.getvalue()
-
-excel_data = to_excel(df)
-
 st.download_button(
-    label="📥 导出完整结果（Excel）",
-    data=excel_data,
-    file_name="动词判断结果.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    label="📥 导出完整结果（CSV，可直接用 Excel 打开）",
+    data=df.to_csv(index=False).encode('utf-8-sig'),
+    file_name="动词判断结果.csv",
+    mime="text/csv"
 )
 
 st.markdown("<br><center>✅ 工具制作完成 | 数据仅本地保存</center>", unsafe_allow_html=True)
