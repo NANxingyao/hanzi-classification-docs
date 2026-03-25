@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 st.title("📝 名词属性判断系统")
-st.markdown("### 请判断每个词语**作为名词**时是否符合规则，系统自动计分")
+st.markdown("### 请判断每个词语是否符合动词规则")
 st.divider()
 
 # --------------------------
@@ -24,7 +24,7 @@ rules = [
     {"desc": "可以作中心语受其他名词修饰，或作定语直接修饰其他名词", "yes": 10, "no": 0},
     {"desc": "可以后附助词“的”构成“的”字结构", "yes": 10, "no": 0},
     {"desc": "可以后附方位词构成处所结构", "yes": 10, "no": 0},
-    {"desc": "不能作谓语和谓语核心（不含省略语境）", "yes": 10, "no": -10},
+    {"desc": "不能作谓语和谓语核心", "yes": 10, "no": -10},
     {"desc": "不能作补语，一般不能作状语直接修饰动词性成分", "yes": 10, "no": 0},
 ]
 
@@ -43,7 +43,7 @@ words = [
 all_results = []
 
 for word in words:
-    st.subheader(f"🔍 测试词语：{word}（名词）")
+    st.subheader(f"🔍 测试词语：{word}")
     scores = []
 
     for idx, rule in enumerate(rules):
